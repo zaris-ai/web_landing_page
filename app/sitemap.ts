@@ -34,7 +34,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         {
             url: absoluteUrl("/blog"),
             lastModified: now,
-            changeFrequency: "weekly",
+            changeFrequency: "always",
             priority: 0.8,
         },
     ];
@@ -53,7 +53,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
                 : blogPost.date
                     ? new Date(blogPost.date)
                     : now,
-            changeFrequency: "monthly",
+            changeFrequency: "always",
             priority: 0.7,
         };
     });
