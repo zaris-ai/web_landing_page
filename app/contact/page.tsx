@@ -7,27 +7,45 @@ import ContactForm from '@/components/ContactForm';
 export const metadata: Metadata = {
   title: 'Contact Us | Arka: Smart Analyzer',
   description:
-    'Contact Smart Store Analyzer about Arka: Smart Analyzer, the embedded Shopify analytics dashboard for customer, product, and sales insights.',
+    'Contact Smart Store Analyzer for Arka: Smart Analyzer support, Shopify analytics questions, privacy resources, and app listing information.',
+  alternates: {
+    canonical: '/contact',
+  },
 };
 
 const contactCards = [
   {
     title: 'Shopify App Listing',
-    body: 'Review the app listing, product summary, and installation details on the Shopify App Store.',
+    body: 'View Arka: Smart Analyzer on the Shopify App Store to review product details, installation information, pricing, screenshots, compatibility, and analytics features.',
     ctaLabel: 'Open listing',
     ctaHref: 'https://apps.shopify.com/arka-smart-analyzer',
   },
   {
     title: 'Privacy Policy',
-    body: 'Review how data access and processing are described for the app.',
+    body: 'Review how Arka describes data access, processing, and privacy practices for Shopify merchants using the embedded analytics dashboard.',
     ctaLabel: 'Open privacy policy',
     ctaHref: 'https://api.arkaanalyzer.com/privacy-policy',
   },
   {
     title: 'Developer Details',
-    body: 'Arka is published by Smart Store Analyzer and listed with a support address in Istanbul, Turkey.',
+    body: 'Arka: Smart Analyzer is published by Smart Store Analyzer. Learn more about the product, its purpose, and the team behind the Shopify analytics app.',
     ctaLabel: 'About us',
     ctaHref: '/about',
+  },
+];
+
+const inquiryTypes = [
+  {
+    title: 'Product questions',
+    body: 'Ask about customer segmentation, retention insights, product performance, sales trends, funnel views, store KPIs, or how Arka fits into your Shopify workflow.',
+  },
+  {
+    title: 'Support requests',
+    body: 'Contact us if you need help understanding the app listing, reviewing setup information, checking available resources, or finding the correct support channel.',
+  },
+  {
+    title: 'Business inquiries',
+    body: 'Reach out for partnership, marketplace, or product-related questions connected to Smart Store Analyzer and Arka: Smart Analyzer.',
   },
 ];
 
@@ -36,7 +54,7 @@ export default function ContactPage() {
     <main className="min-h-screen bg-[#FCF5EE] text-slate-900">
       <section className="border-b border-[#FFC4C4] bg-gradient-to-b from-[#FCF5EE] to-white">
         <div className="mx-auto max-w-7xl px-6 py-20 md:px-10 md:py-28">
-          <div className="max-w-3xl">
+          <div className="max-w-4xl">
             <Reveal>
               <span className="inline-flex rounded-full border border-[#EE6983]/30 bg-[#EE6983]/10 px-4 py-1 text-sm font-medium text-[#850E35]">
                 Contact us
@@ -45,15 +63,28 @@ export default function ContactPage() {
 
             <Reveal delay={0.08}>
               <h1 className="mt-6 text-4xl font-bold tracking-tight text-[#850E35] md:text-6xl">
-                Reach out about Arka: Smart Analyzer
+                Contact Smart Store Analyzer about Arka: Smart Analyzer
               </h1>
             </Reveal>
 
             <Reveal delay={0.16}>
               <p className="mt-6 text-lg leading-8 text-slate-700 md:text-xl">
-                Use this page to direct support, product, or business inquiries to
-                the right place. This version is front-end only and keeps the
-                contact experience aligned with the current landing page design.
+                Have a question about Arka: Smart Analyzer, the embedded Shopify
+                analytics dashboard for customer, product, and sales insights?
+                Use this page to reach the right resource for product questions,
+                support requests, privacy information, and app listing details.
+              </p>
+            </Reveal>
+
+            <Reveal delay={0.24}>
+              <p className="mt-5 text-base leading-8 text-slate-700 md:text-lg">
+                Arka helps Shopify merchants review sales performance, funnel
+                activity, customer segments, retention signals, product
+                performance, product tiers, bundle analytics, and store KPI
+                trends from inside Shopify admin. If you are evaluating the app,
+                checking support information, or need to understand how the
+                analytics dashboard can support store decisions, this contact
+                page gives you the correct next step.
               </p>
             </Reveal>
           </div>
@@ -69,14 +100,18 @@ export default function ContactPage() {
                   {item.title}
                 </h2>
 
-                <p className="mt-3 min-h-[96px] leading-7 text-slate-700">
+                <p className="mt-3 min-h-[120px] leading-7 text-slate-700">
                   {item.body}
                 </p>
 
                 <Link
                   href={item.ctaHref}
                   target={item.ctaHref.startsWith('http') ? '_blank' : undefined}
-                  rel={item.ctaHref.startsWith('http') ? 'noopener noreferrer' : undefined}
+                  rel={
+                    item.ctaHref.startsWith('http')
+                      ? 'noopener noreferrer'
+                      : undefined
+                  }
                   className="mt-5 inline-flex items-center rounded-xl bg-[#850E35] px-4 py-2.5 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:opacity-90"
                 >
                   {item.ctaLabel}
@@ -88,12 +123,52 @@ export default function ContactPage() {
       </section>
 
       <section className="border-y border-[#FFC4C4] bg-white">
-        <div className="mx-auto grid max-w-7xl gap-10 px-6 py-16 md:px-10">
+        <div className="mx-auto grid max-w-7xl gap-10 px-6 py-16 md:grid-cols-[0.9fr_1.1fr] md:px-10">
           <Reveal>
+            <div>
+              <span className="inline-flex rounded-full border border-[#EE6983]/30 bg-[#EE6983]/10 px-4 py-1 text-sm font-medium text-[#850E35]">
+                Inquiry types
+              </span>
+
+              <h2 className="mt-5 text-3xl font-bold tracking-tight text-[#850E35] md:text-4xl">
+                What you can contact us about
+              </h2>
+
+              <p className="mt-4 leading-8 text-slate-700">
+                To keep support clear and useful, please include your Shopify
+                store context, the page or feature you are asking about, and any
+                relevant details from the Shopify App Store listing. This helps
+                us route your message correctly.
+              </p>
+
+              <div className="mt-8 space-y-5">
+                {inquiryTypes.map((item) => (
+                  <div
+                    key={item.title}
+                    className="rounded-2xl border border-[#FFC4C4] bg-[#FCF5EE] p-5"
+                  >
+                    <h3 className="text-lg font-semibold text-[#850E35]">
+                      {item.title}
+                    </h3>
+                    <p className="mt-2 leading-7 text-slate-700">{item.body}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.12}>
             <div>
               <h2 className="text-3xl font-bold tracking-tight text-[#850E35] md:text-4xl">
                 Send a message
               </h2>
+
+              <p className="mt-4 leading-8 text-slate-700">
+                Use the form below for questions about Arka: Smart Analyzer,
+                Shopify analytics, customer segmentation, product performance
+                reports, sales trend analysis, app support, or privacy-related
+                resources.
+              </p>
 
               <ContactForm />
             </div>
@@ -110,8 +185,10 @@ export default function ContactPage() {
               </h2>
 
               <p className="mt-4 text-base leading-7 text-white/85 md:text-lg">
-                Start with the Shopify App Store listing to understand the
-                product, capabilities, and compatibility.
+                Start with the Shopify App Store listing to review Arka: Smart
+                Analyzer’s product summary, screenshots, pricing, supported
+                analytics features, support resources, privacy policy, and
+                developer information before sending a message.
               </p>
 
               <div className="mt-8 flex flex-col gap-4 sm:flex-row">

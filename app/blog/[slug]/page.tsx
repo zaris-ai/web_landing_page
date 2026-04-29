@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 import { notFound } from 'next/navigation';
 
 import Reveal from '@/components/Reveal';
@@ -26,12 +27,30 @@ export async function generateMetadata({
   if (!post) {
     return {
       title: 'Post Not Found | Arka Blog',
+      alternates: {
+        canonical: '/blog',
+      },
     };
   }
 
   return {
     title: post.seoTitle || `${post.title} | Arka Blog`,
     description: post.seoDescription || post.excerpt,
+    alternates: {
+      canonical: `/blog/${post.slug}`,
+    },
+    openGraph: {
+      title: post.seoTitle || post.title,
+      description: post.seoDescription || post.excerpt,
+      type: 'article',
+      url: `/blog/${post.slug}`,
+      images: [
+        {
+          url: post.coverImage,
+          alt: post.title,
+        },
+      ],
+    },
   };
 }
 
@@ -102,11 +121,14 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       <section className="mx-auto max-w-4xl px-6 py-12 md:px-10">
         <Reveal>
           <div className="overflow-hidden rounded-3xl border border-[#FFC4C4] bg-white shadow-sm">
-            <div className="aspect-[16/8] overflow-hidden bg-[#FCF5EE]">
-              <img
+            <div className="relative aspect-[16/8] overflow-hidden bg-[#FCF5EE]">
+              <Image
                 src={post.coverImage}
                 alt={post.title}
-                className="h-full w-full object-cover transition-transform duration-500 hover:scale-[1.02]"
+                fill
+                priority
+                sizes="(max-width: 768px) 100vw, 896px"
+                className="object-cover transition-transform duration-500 hover:scale-[1.02]"
               />
             </div>
 
@@ -126,7 +148,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           <Reveal>
             <div className="mb-10">
               <h2 className="text-3xl font-bold tracking-tight text-[#850E35]">
-                Related articles
+                Related Shopify analytics articles
               </h2>
             </div>
           </Reveal>

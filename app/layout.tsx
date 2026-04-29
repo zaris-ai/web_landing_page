@@ -9,12 +9,17 @@ import './globals.css';
 
 const GA_MEASUREMENT_ID = 'G-STEXFS0SLQ';
 const CLARITY_PROJECT_ID = 'winnxswq00';
+const SITE_URL = 'https://web.arkaanalyzer.com';
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title:
     'Arka: Smart Analyzer | Shopify analytics for customers, products, and sales trends',
   description:
     'Embedded Shopify analytics for customer segments, product performance, sales trends, funnel views, and store KPIs.',
+  alternates: {
+    canonical: '/',
+  },
   icons: {
     icon: '/favicon.ico',
   },

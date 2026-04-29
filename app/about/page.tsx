@@ -4,26 +4,29 @@ import Link from 'next/link';
 import Reveal from '@/components/Reveal';
 
 export const metadata: Metadata = {
-  title: 'About Us | Arka: Smart Analyzer',
+  title: 'About Us | Arka: Smart Analyzer Shopify Analytics App',
   description:
-    'Learn about Arka: Smart Analyzer, an embedded Shopify analytics app built to help merchants understand customers, products, and sales trends.',
+    'Learn about Arka: Smart Analyzer, a free embedded Shopify analytics app by Smart Store Analyzer for product performance, sales trends, funnel views, and store KPIs.',
+  alternates: {
+    canonical: '/about',
+  },
 };
 
 const highlights = [
   {
-    title: 'Customer insights',
+    title: 'Product performance insights',
     description:
-      'Understand customer segments, retention signals, and order-driven behavior without exporting spreadsheets.',
+      'Review top-performing and underperforming products, product tiers, bundle signals, and abandonment indicators from your Shopify store data.',
   },
   {
-    title: 'Product analytics',
+    title: 'Sales trend analytics',
     description:
-      'Track top and underperforming products, product tiers, bundles, and abandonment indicators in one place.',
+      'Track sales performance, funnel views, historical patterns, and store KPI movement so changes are easier to identify.',
   },
   {
-    title: 'Sales visibility',
+    title: 'Embedded Shopify dashboard',
     description:
-      'Review sales trends, funnel views, and key store KPIs to spot changes and decide what to optimize next.',
+      'Use analytics inside Shopify admin instead of moving between disconnected spreadsheets, exports, or external reporting tools.',
   },
 ];
 
@@ -31,17 +34,17 @@ const values = [
   {
     title: 'Embedded, not detached',
     description:
-      'Arka is designed to work inside Shopify admin so merchants can analyze store performance in the same place they operate the business.',
+      'Arka is designed to work inside Shopify admin so merchants can analyze store performance in the same environment where they manage their business.',
   },
   {
-    title: 'Decision-ready dashboards',
+    title: 'Decision-ready reporting',
     description:
-      'The goal is not just more charts. The goal is clearer signals on what is changing in the store and where to act next.',
+      'The purpose is not to add more charts. The goal is to surface practical signals about products, sales behavior, and store performance.',
   },
   {
-    title: 'Focused analytics',
+    title: 'Focused analytics scope',
     description:
-      'Arka is deliberately centered on customers, products, and sales trends instead of trying to become an overloaded general-purpose platform.',
+      'Arka focuses on product analytics, sales trends, funnel views, historical analysis, and store KPIs instead of becoming an overloaded general-purpose tool.',
   },
 ];
 
@@ -50,7 +53,7 @@ export default function AboutPage() {
     <main className="min-h-screen bg-[#FCF5EE] text-slate-900">
       <section className="border-b border-[#FFC4C4] bg-gradient-to-b from-[#FCF5EE] to-white">
         <div className="mx-auto max-w-7xl px-6 py-20 md:px-10 md:py-28">
-          <div className="max-w-3xl">
+          <div className="max-w-4xl">
             <Reveal>
               <span className="inline-flex rounded-full border border-[#EE6983]/30 bg-[#EE6983]/10 px-4 py-1 text-sm font-medium text-[#850E35]">
                 About Arka
@@ -59,19 +62,31 @@ export default function AboutPage() {
 
             <Reveal delay={0.08}>
               <h1 className="mt-6 text-4xl font-bold tracking-tight text-[#850E35] md:text-6xl">
-                Built to turn Shopify store data into clear, usable insight
+                Built to turn Shopify store data into product and sales insights
               </h1>
             </Reveal>
 
             <Reveal delay={0.16}>
               <p className="mt-6 text-lg leading-8 text-slate-700 md:text-xl">
-                Arka: Smart Analyzer helps merchants understand what is happening
-                across customers, products, and sales trends through an embedded
-                analytics experience inside Shopify admin.
+                Arka: Smart Analyzer is a free embedded Shopify analytics app
+                published by Smart Store Analyzer. It helps merchants review
+                product performance, sales trends, funnel views, historical
+                analysis, and store KPIs directly inside Shopify admin.
               </p>
             </Reveal>
 
             <Reveal delay={0.24}>
+              <p className="mt-5 text-base leading-8 text-slate-700 md:text-lg">
+                The app is built for merchants who need clearer visibility into
+                what is changing across their store. Instead of relying only on
+                exports or disconnected reports, Arka summarizes practical
+                signals from store activity so teams can identify performing
+                products, weaker product areas, funnel movement, and sales
+                patterns more efficiently.
+              </p>
+            </Reveal>
+
+            <Reveal delay={0.32}>
               <div className="mt-8 flex flex-col gap-4 sm:flex-row">
                 <Link
                   href="https://apps.shopify.com/arka-smart-analyzer"
@@ -122,18 +137,26 @@ export default function AboutPage() {
                 </h2>
 
                 <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-700">
-                  Many merchants already have data, but that does not mean they
-                  have clarity. Arka is designed to reduce that gap by surfacing
-                  the store signals that matter most: who is buying, what is
-                  performing, what is weakening, and how sales behavior is
-                  shifting over time.
+                  Shopify merchants already have access to store data, but raw
+                  data does not automatically create clarity. Arka exists to make
+                  important store signals easier to review: which products are
+                  performing, which products may need attention, how sales trends
+                  are moving, and where funnel activity may require optimization.
                 </p>
 
                 <p className="mt-5 max-w-3xl leading-8 text-slate-700">
-                  The product is built around practical analysis rather than
-                  spreadsheet-heavy workflows. The aim is to help merchants review
-                  performance faster, compare periods more easily, and move from
-                  observation to action with less friction.
+                  The product is intentionally centered on product analytics,
+                  historical analysis, funnel analysis, sales trends, and store
+                  KPI reporting. This focused scope helps merchants evaluate
+                  performance without turning every review into a manual
+                  spreadsheet exercise.
+                </p>
+
+                <p className="mt-5 max-w-3xl leading-8 text-slate-700">
+                  Arka is listed in the Shopify App Store under the Analytics
+                  category and works with Checkout. The app listing describes
+                  features such as product performance, product tiers, sales
+                  trends, funnel views, and store KPI dashboards.
                 </p>
               </div>
             </Reveal>
@@ -153,9 +176,23 @@ export default function AboutPage() {
                   </div>
 
                   <div className="flex items-start justify-between gap-4 border-b border-[#FFC4C4] pb-4">
+                    <dt className="font-medium text-slate-600">Developer</dt>
+                    <dd className="text-right font-semibold text-slate-900">
+                      Smart Store Analyzer
+                    </dd>
+                  </div>
+
+                  <div className="flex items-start justify-between gap-4 border-b border-[#FFC4C4] pb-4">
                     <dt className="font-medium text-slate-600">Pricing</dt>
                     <dd className="text-right font-semibold text-slate-900">
                       Free
+                    </dd>
+                  </div>
+
+                  <div className="flex items-start justify-between gap-4 border-b border-[#FFC4C4] pb-4">
+                    <dt className="font-medium text-slate-600">Category</dt>
+                    <dd className="text-right font-semibold text-slate-900">
+                      Analytics
                     </dd>
                   </div>
 
@@ -174,9 +211,9 @@ export default function AboutPage() {
                   </div>
 
                   <div className="flex items-start justify-between gap-4">
-                    <dt className="font-medium text-slate-600">Developer</dt>
+                    <dt className="font-medium text-slate-600">Launched</dt>
                     <dd className="text-right font-semibold text-slate-900">
-                      Smart Store Analyzer
+                      March 19, 2026
                     </dd>
                   </div>
                 </dl>
@@ -192,6 +229,12 @@ export default function AboutPage() {
             <h2 className="text-3xl font-bold tracking-tight text-[#850E35] md:text-4xl">
               What guides the product
             </h2>
+
+            <p className="mt-4 leading-8 text-slate-700">
+              Arka is built around practical Shopify reporting. Its role is to
+              help merchants move from scattered store data to clearer product
+              and sales decisions.
+            </p>
           </div>
         </Reveal>
 
@@ -222,8 +265,9 @@ export default function AboutPage() {
                 </h2>
 
                 <p className="mt-4 text-base leading-7 text-white/85 md:text-lg">
-                  Visit the app listing, review the privacy policy, or use the
-                  contact page to present support or partnership questions.
+                  Visit the Shopify App Store listing to review Arka: Smart
+                  Analyzer, check the privacy policy for data access details, or
+                  use the contact page for support and business questions.
                 </p>
 
                 <div className="mt-8 flex flex-col gap-4 sm:flex-row">
