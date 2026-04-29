@@ -1,21 +1,53 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
+
+const CONTACT_WEBHOOK_URL =
+  'https://zarisdevelopers.app.n8n.cloud/webhook/contact-form';
 
 export default function ContactForm() {
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // connect this to your API route / server action later
-    const formData = new FormData(e.currentTarget);
+    const form = e.currentTarget;
+    const formData = new FormData(form);
 
-    console.log({
-      name: formData.get('name'),
+    const payload = {
+      fullName: formData.get('fullName'),
       email: formData.get('email'),
-      store: formData.get('store'),
+      storeUrl: formData.get('storeUrl'),
       topic: formData.get('topic'),
       message: formData.get('message'),
-    });
+      source: 'Arka Contact Page',
+    };
+
+    try {
+      setIsSubmitting(true);
+      setStatus('idle');
+
+      const response = await fetch(CONTACT_WEBHOOK_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to send message');
+      }
+
+      setStatus('success');
+      form.reset();
+    } catch (error) {
+      console.error(error);
+      setStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -25,47 +57,40 @@ export default function ContactForm() {
     >
       <div className="grid gap-6 md:grid-cols-2">
         <div>
-          <label
-            htmlFor="name"
-            className="mb-2 block text-sm font-semibold text-[#850E35]"
-          >
+          <label htmlFor="fullName" className="mb-2 block text-sm font-semibold text-[#850E35]">
             Full name
           </label>
           <input
-            id="name"
-            name="name"
+            id="fullName"
+            name="fullName"
             type="text"
+            required
             placeholder="Your full name"
             className="w-full rounded-xl border border-[#FFC4C4] bg-white px-4 py-3 outline-none transition focus:border-[#850E35]"
           />
         </div>
 
         <div>
-          <label
-            htmlFor="email"
-            className="mb-2 block text-sm font-semibold text-[#850E35]"
-          >
+          <label htmlFor="email" className="mb-2 block text-sm font-semibold text-[#850E35]">
             Email address
           </label>
           <input
             id="email"
             name="email"
             type="email"
+            required
             placeholder="you@example.com"
             className="w-full rounded-xl border border-[#FFC4C4] bg-white px-4 py-3 outline-none transition focus:border-[#850E35]"
           />
         </div>
 
         <div>
-          <label
-            htmlFor="store"
-            className="mb-2 block text-sm font-semibold text-[#850E35]"
-          >
+          <label htmlFor="storeUrl" className="mb-2 block text-sm font-semibold text-[#850E35]">
             Shopify store URL
           </label>
           <input
-            id="store"
-            name="store"
+            id="storeUrl"
+            name="storeUrl"
             type="text"
             placeholder="your-store.myshopify.com"
             className="w-full rounded-xl border border-[#FFC4C4] bg-white px-4 py-3 outline-none transition focus:border-[#850E35]"
@@ -73,15 +98,13 @@ export default function ContactForm() {
         </div>
 
         <div>
-          <label
-            htmlFor="topic"
-            className="mb-2 block text-sm font-semibold text-[#850E35]"
-          >
+          <label htmlFor="topic" className="mb-2 block text-sm font-semibold text-[#850E35]">
             Topic
           </label>
           <select
             id="topic"
             name="topic"
+            required
             className="w-full rounded-xl border border-[#FFC4C4] bg-white px-4 py-3 outline-none transition focus:border-[#850E35]"
             defaultValue=""
           >
@@ -98,32 +121,46 @@ export default function ContactForm() {
       </div>
 
       <div className="mt-6">
-        <label
-          htmlFor="message"
-          className="mb-2 block text-sm font-semibold text-[#850E35]"
-        >
+        <label htmlFor="message" className="mb-2 block text-sm font-semibold text-[#850E35]">
           Message
         </label>
         <textarea
           id="message"
           name="message"
           rows={6}
+          required
           placeholder="Tell us what you need."
           className="w-full rounded-xl border border-[#FFC4C4] bg-white px-4 py-3 outline-none transition focus:border-[#850E35]"
         />
       </div>
 
       <div className="mt-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <p className="text-sm leading-6 text-slate-600">
-          Wire this form to your backend before treating it as a live contact
-          channel.
-        </p>
+        <div className="text-sm leading-6">
+          {status === 'success' && (
+            <p className="font-medium text-green-700">
+              Message sent successfully.
+            </p>
+          )}
+
+          {status === 'error' && (
+            <p className="font-medium text-red-700">
+              Message failed. Please try again.
+            </p>
+          )}
+
+          {status === 'idle' && (
+            <p className="text-slate-600">
+              Your message will be sent directly to Smart Store Analyzer.
+            </p>
+          )}
+        </div>
 
         <button
           type="submit"
-          className="inline-flex items-center justify-center rounded-xl bg-[#850E35] px-6 py-3 text-sm font-semibold text-white transition hover:opacity-90"
+          disabled={isSubmitting}
+          className="inline-flex items-center justify-center rounded-xl bg-[#850E35] px-6 py-3 text-sm font-semibold text-white transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
         >
-          Send message
+          {isSubmitting ? 'Sending...' : 'Send message'}
         </button>
       </div>
     </form>
