@@ -70,7 +70,7 @@ export async function generateMetadata({
     },
   };
 }
-
+// test
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { slug } = await params;
   const post = await getAiBlogByIdentifier(slug);
