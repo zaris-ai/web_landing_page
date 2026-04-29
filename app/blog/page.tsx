@@ -17,8 +17,22 @@ export const metadata: Metadata = {
 
 export const dynamic = 'force-dynamic';
 
+function getPostDate(post: {
+  publishedAt?: string | null;
+  generatedAt?: string | null;
+  createdAt?: string | null;
+}) {
+  return new Date(
+    post.publishedAt || post.generatedAt || post.createdAt || 0
+  ).getTime();
+}
+
 export default async function BlogPage() {
   const posts = await getAiBlogs(50);
+
+  const sortedPosts = [...posts].sort((a, b) => getPostDate(b) - getPostDate(a));
+  const latestPost = sortedPosts[0];
+  const otherPosts = sortedPosts.slice(1);
 
   return (
     <main className="min-h-screen bg-[#FCF5EE] text-slate-900">
@@ -37,22 +51,28 @@ export default async function BlogPage() {
               checkout signals, and data-driven store decisions.
             </p>
 
-            {posts.length > 0 ? (
+            {sortedPosts.length > 0 ? (
               <p className="mt-4 inline-flex rounded-full border border-[#EE6983]/30 bg-[#EE6983]/10 px-4 py-1 text-sm font-medium text-[#850E35]">
-                {posts.length} post{posts.length > 1 ? 's' : ''}
+                {sortedPosts.length} post{sortedPosts.length > 1 ? 's' : ''}
               </p>
             ) : null}
           </div>
         </Reveal>
 
-        {posts.length > 0 ? (
-          <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
-            {posts.map((post, index) => (
-              <Reveal key={post._id || post.slug || index} delay={index * 0.08}>
-                <ApiBlogCard post={post} />
-              </Reveal>
-            ))}
-          </div>
+        {latestPost ? (
+          <>
+            <Reveal delay={0.08}>
+              <div className="mb-8 max-w-3xl">
+                <h3 className="text-2xl font-bold tracking-tight text-[#850E35] md:text-3xl">
+                  Latest post
+                </h3>
+              </div>
+            </Reveal>
+
+            <Reveal delay={0.12}>
+              <ApiBlogCard post={latestPost} />
+            </Reveal>
+          </>
         ) : (
           <div className="rounded-2xl border border-[#FFC4C4] bg-white p-8">
             <h2 className="text-2xl font-bold text-[#850E35]">
@@ -65,6 +85,37 @@ export default async function BlogPage() {
           </div>
         )}
       </section>
+
+      {otherPosts.length > 0 ? (
+        <section className="border-t border-[#FFC4C4] bg-white">
+          <div className="mx-auto max-w-7xl px-6 py-16 md:px-10">
+            <Reveal>
+              <div className="mb-10 max-w-3xl">
+                <h3 className="text-3xl font-bold tracking-tight text-[#850E35] md:text-4xl">
+                  More Shopify analytics posts
+                </h3>
+
+                <p className="mt-4 leading-8 text-slate-700">
+                  Explore more articles about sales performance, customer
+                  segments, retention signals, funnel analysis, product
+                  movement, and smarter store decisions.
+                </p>
+              </div>
+            </Reveal>
+
+            <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
+              {otherPosts.map((post, index) => (
+                <Reveal
+                  key={post._id || post.slug || index}
+                  delay={index * 0.08}
+                >
+                  <ApiBlogCard post={post} />
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
     </main>
   );
 }
