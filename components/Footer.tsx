@@ -20,6 +20,7 @@ import type { FooterSection } from '@/types';
 
 const APP_STORE_URL = 'https://apps.shopify.com/arka-smart-analyzer';
 const PRIVACY_URL = 'https://api.arkaanalyzer.com';
+const ARKA_SMART_ANALYZER_URL = '/arka-smart-analyzer';
 
 type FooterLink = {
   label: string;
@@ -36,27 +37,76 @@ export default function Footer() {
     {
       title: 'Product',
       links: [
-        { label: 'Features', href: '#features', icon: IconChartBar },
-        { label: 'Overview', href: '#how-it-works', icon: IconDeviceAnalytics },
-        { label: 'Pricing', href: '#pricing', icon: IconCheck },
-        { label: 'Shopify App Store', href: APP_STORE_URL, icon: IconShoppingCart },
+        {
+          label: 'Arka Smart Analyzer',
+          href: ARKA_SMART_ANALYZER_URL,
+          icon: IconDeviceAnalytics,
+        },
+        {
+          label: 'Features',
+          href: '#features',
+          icon: IconChartBar,
+        },
+        {
+          label: 'Overview',
+          href: '#how-it-works',
+          icon: IconDeviceAnalytics,
+        },
+        {
+          label: 'Pricing',
+          href: '#pricing',
+          icon: IconCheck,
+        },
+        {
+          label: 'Shopify App Store',
+          href: APP_STORE_URL,
+          icon: IconShoppingCart,
+        },
       ],
     },
     {
       title: 'Resources',
       links: [
-        { label: 'Privacy Policy', href: PRIVACY_URL, icon: IconShieldLock },
-        { label: 'Shopify Listing', href: APP_STORE_URL, icon: IconExternalLink },
-        { label: 'App Support', href: APP_STORE_URL, icon: IconHeadset },
+        {
+          label: 'Privacy Policy',
+          href: PRIVACY_URL,
+          icon: IconShieldLock,
+        },
+        {
+          label: 'Shopify Listing',
+          href: APP_STORE_URL,
+          icon: IconExternalLink,
+        },
+        {
+          label: 'App Support',
+          href: APP_STORE_URL,
+          icon: IconHeadset,
+        },
       ],
     },
     {
       title: 'App Details',
       links: [
-        { label: 'Developer: Smart Store Analyzer', href: APP_STORE_URL, icon: IconUserCode },
-        { label: 'Category: Analytics', href: APP_STORE_URL, icon: IconCategory },
-        { label: 'Language: English', href: APP_STORE_URL, icon: IconLanguage },
-        { label: 'Works with Checkout', href: APP_STORE_URL, icon: IconShoppingCart },
+        {
+          label: 'Developer: Smart Store Analyzer',
+          href: APP_STORE_URL,
+          icon: IconUserCode,
+        },
+        {
+          label: 'Category: Analytics',
+          href: APP_STORE_URL,
+          icon: IconCategory,
+        },
+        {
+          label: 'Language: English',
+          href: APP_STORE_URL,
+          icon: IconLanguage,
+        },
+        {
+          label: 'Works with Checkout',
+          href: APP_STORE_URL,
+          icon: IconShoppingCart,
+        },
       ],
     },
   ];
@@ -72,14 +122,25 @@ export default function Footer() {
                   <IconDeviceAnalytics size={30} stroke={1.8} />
                 </div>
 
-                <span className="text-2xl font-bold">Arka: Smart Analyzer</span>
+                <span className="text-2xl font-bold">
+                  Arka: Smart Analyzer
+                </span>
               </div>
 
               <p className="mb-6 max-w-sm text-white/80">
-                Embedded analytics for customers, products, and sales trends inside Shopify admin.
+                Embedded analytics for customers, products, and sales trends
+                inside Shopify admin.
               </p>
 
               <div className="flex gap-4">
+                <a
+                  href={ARKA_SMART_ANALYZER_URL}
+                  className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/20"
+                  aria-label="Arka Smart Analyzer page"
+                >
+                  <IconDeviceAnalytics size={22} stroke={1.8} />
+                </a>
+
                 <a
                   href={APP_STORE_URL}
                   target="_blank"

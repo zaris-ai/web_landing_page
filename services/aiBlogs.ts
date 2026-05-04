@@ -27,7 +27,6 @@ export async function getAiBlogByIdentifier(
         if (!response.data.ok || response.data.data.status !== 'published') {
             return null;
         }
-
         return response.data.data;
     } catch {
         const blogs = await getAiBlogs(100);
