@@ -120,22 +120,34 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 1,
     },
     {
+      url: absoluteUrl("/arka-smart-analyzer"),
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    {
       url: absoluteUrl("/about"),
       lastModified: now,
       changeFrequency: "monthly",
       priority: 0.8,
     },
     {
-      url: absoluteUrl("/contact"),
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
       url: absoluteUrl("/blog"),
       lastModified: now,
       changeFrequency: "weekly",
       priority: 0.8,
+    },
+    {
+      url: absoluteUrl("/faq"),
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.75,
+    },
+    {
+      url: absoluteUrl("/contact"),
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.7,
     },
   ];
 

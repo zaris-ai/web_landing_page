@@ -7,6 +7,7 @@ import {
   IconDeviceAnalytics,
   IconExternalLink,
   IconHeadset,
+  IconHelpCircle,
   IconLanguage,
   IconPuzzle,
   IconShieldLock,
@@ -21,6 +22,7 @@ import type { FooterSection } from '@/types';
 const APP_STORE_URL = 'https://apps.shopify.com/arka-smart-analyzer';
 const PRIVACY_URL = 'https://api.arkaanalyzer.com';
 const ARKA_SMART_ANALYZER_URL = '/arka-smart-analyzer';
+const FAQ_URL = '/faq';
 
 type FooterLink = {
   label: string;
@@ -67,6 +69,11 @@ export default function Footer() {
     {
       title: 'Resources',
       links: [
+        {
+          label: 'FAQ',
+          href: FAQ_URL,
+          icon: IconHelpCircle,
+        },
         {
           label: 'Privacy Policy',
           href: PRIVACY_URL,
@@ -139,6 +146,14 @@ export default function Footer() {
                   aria-label="Arka Smart Analyzer page"
                 >
                   <IconDeviceAnalytics size={22} stroke={1.8} />
+                </a>
+
+                <a
+                  href={FAQ_URL}
+                  className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/20"
+                  aria-label="Frequently Asked Questions"
+                >
+                  <IconHelpCircle size={22} stroke={1.8} />
                 </a>
 
                 <a
