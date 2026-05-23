@@ -6,6 +6,7 @@ import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 
 import './globals.css';
+import SupportArkaSection from '@/components/SupportArkaSection';
 
 const GA_MEASUREMENT_ID = 'G-STEXFS0SLQ';
 const CLARITY_PROJECT_ID = 'winnxswq00';
@@ -143,7 +144,7 @@ export default function RootLayout({
         <Navigation />
 
         {children}
-
+        <SupportArkaSection />
         <Footer />
 
         <Script
